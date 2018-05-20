@@ -1,0 +1,72 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using Vuforia;
+
+public class ARCV : MonoBehaviour, IVirtualButtonEventHandler
+{
+    public GameObject PersonalDataGO,WorkExpGo,EducationGo,SkillsGo;
+
+    // Use this for initialization
+    void Start()
+    {
+
+        VirtualButtonBehaviour[] vbs = GetComponentsInChildren<VirtualButtonBehaviour>();
+        for (int i = 0; i < vbs.Length; ++i)
+        { vbs[i].RegisterEventHandler(this); };
+
+        PersonalDataGO.SetActive(false);
+        WorkExpGo.SetActive(false);
+        EducationGo.SetActive(false);
+        SkillsGo.SetActive(false);
+    }
+     
+    public void OnButtonPressed(VirtualButtonBehaviour vb)
+    {
+        if (vb.VirtualButtonName == "PersonalDataVB")
+        {
+            Debug.Log("Personaldata Button pressed");
+            PersonalDataGO.SetActive(true);
+            WorkExpGo.SetActive(false);
+            EducationGo.SetActive(false);
+            SkillsGo.SetActive(false);
+        }
+        else if (vb.VirtualButtonName == "WorkExpVB")
+        {
+            Debug.Log("Workexperience Button pressed");
+            PersonalDataGO.SetActive(false);
+            WorkExpGo.SetActive(true);
+            EducationGo.SetActive(false);
+            SkillsGo.SetActive(false);
+        }
+        else if (vb.VirtualButtonName == "EducationVB")
+        {
+            Debug.Log("Education Button pressed");
+            PersonalDataGO.SetActive(false);
+            WorkExpGo.SetActive(false);
+            EducationGo.SetActive(true);
+            SkillsGo.SetActive(false);
+        }
+        else if (vb.VirtualButtonName == "SkillsVB")
+        {
+            Debug.Log("Skills Button pressed");
+            PersonalDataGO.SetActive(false);
+            WorkExpGo.SetActive(false);
+            EducationGo.SetActive(false);
+            SkillsGo.SetActive(true);
+        }
+
+    }
+
+    public void OnButtonReleased(VirtualButtonBehaviour vb)
+    {
+      
+           Debug.Log("Buttone released");
+            PersonalDataGO.SetActive(false);
+            WorkExpGo.SetActive(false);
+            EducationGo.SetActive(false);
+            SkillsGo.SetActive(false);
+        
+    }
+
+}
